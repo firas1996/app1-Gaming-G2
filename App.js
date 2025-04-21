@@ -9,6 +9,10 @@ import {
 import TestItem from "./src/components/TestItem";
 import { useState } from "react";
 
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Home from "./src/screens/Home";
+
 export default function App() {
   const [data, setData] = useState([]);
   const [txt, setTxt] = useState("");
@@ -23,36 +27,41 @@ export default function App() {
       });
     });
   };
-  console.log(data);
+  const Stack = createStackNavigator();
   return (
-    <View style={styles.container}>
-      <View style={styles.v1}>
-        <TextInput
-          style={styles.imp}
-          value={txt}
-          onChangeText={(text) => {
-            setTxt(text);
-          }}
-        />
-        <Button title="Add" onPress={addItem} />
-      </View>
-      <View style={styles.v2}>
-        <FlatList
-          data={data}
-          // keyExtractor={}
-          renderItem={({ item }) => {
-            return (
-              <TestItem
-                title={item.name}
-                id={item.id}
-                isFav={item.isFav}
-                editItem={editItem}
-              />
-            );
-          }}
-        />
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <View style={styles.container}>
+    //   <View style={styles.v1}>
+    //     <TextInput
+    //       style={styles.imp}
+    //       value={txt}
+    //       onChangeText={(text) => {
+    //         setTxt(text);
+    //       }}
+    //     />
+    //     <Button title="Add" onPress={addItem} />
+    //   </View>
+    //   <View style={styles.v2}>
+    //     <FlatList
+    //       data={data}
+    //       // keyExtractor={}
+    //       renderItem={({ item }) => {
+    //         return (
+    //           <TestItem
+    //             title={item.name}
+    //             id={item.id}
+    //             isFav={item.isFav}
+    //             editItem={editItem}
+    //           />
+    //         );
+    //       }}
+    //     />
+    //   </View>
+    // </View>
   );
 }
 
