@@ -18,9 +18,12 @@ export default function App() {
   };
   const editItem = (id) => {
     setData((prevState) => {
-      return;
+      return prevState.map((item) => {
+        return item.id === id ? { ...item, isFav: !item.isFav } : item;
+      });
     });
   };
+  console.log(data);
   return (
     <View style={styles.container}>
       <View style={styles.v1}>
@@ -38,7 +41,14 @@ export default function App() {
           data={data}
           // keyExtractor={}
           renderItem={({ item }) => {
-            return <TestItem title={item.name} />;
+            return (
+              <TestItem
+                title={item.name}
+                id={item.id}
+                isFav={item.isFav}
+                editItem={editItem}
+              />
+            );
           }}
         />
       </View>
