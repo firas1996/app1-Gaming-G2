@@ -1,11 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const TestItem = ({ title }) => {
   //   const { title } = props;
   return (
     <View style={styles.item}>
       <Text style={styles.itemTXT}>{title}</Text>
+      {/* <AntDesign name="staro" size={32} color="white" /> */}
+      <TouchableOpacity onPress={() => {}}>
+        <AntDesign name="star" size={32} color="yellow" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -20,6 +24,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 12,
     alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   itemTXT: {
     color: "white",

@@ -13,8 +13,13 @@ export default function App() {
   const [data, setData] = useState([]);
   const [txt, setTxt] = useState("");
   const addItem = () => {
-    setData([...data, txt]);
+    setData([...data, { id: Math.random(), name: txt, isFav: false }]);
     setTxt("");
+  };
+  const editItem = (id) => {
+    setData((prevState) => {
+      return;
+    });
   };
   return (
     <View style={styles.container}>
@@ -33,7 +38,7 @@ export default function App() {
           data={data}
           // keyExtractor={}
           renderItem={({ item }) => {
-            return <TestItem title={item} />;
+            return <TestItem title={item.name} />;
           }}
         />
       </View>
