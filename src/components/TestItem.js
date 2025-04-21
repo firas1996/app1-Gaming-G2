@@ -1,14 +1,21 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-const TestItem = ({ title }) => {
+const TestItem = ({ title, id, isFav, editItem }) => {
   //   const { title } = props;
   return (
     <View style={styles.item}>
       <Text style={styles.itemTXT}>{title}</Text>
-      {/* <AntDesign name="staro" size={32} color="white" /> */}
-      <TouchableOpacity onPress={() => {}}>
-        <AntDesign name="star" size={32} color="yellow" />
+      <TouchableOpacity
+        onPress={() => {
+          editItem(id);
+        }}
+      >
+        <AntDesign
+          name={isFav ? "star" : "staro"}
+          size={32}
+          color={isFav ? "yellow" : "white"}
+        />
       </TouchableOpacity>
     </View>
   );
