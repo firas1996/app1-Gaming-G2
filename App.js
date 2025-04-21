@@ -1,14 +1,42 @@
-import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import TestItem from "./src/components/TestItem";
+import { useState } from "react";
 
 export default function App() {
+  const [data, setData] = useState([]);
+  const [txt, setTxt] = useState("");
+  const addItem = () => {
+    setData([...data, txt]);
+    setTxt("");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.v1}>
-        <TextInput style={styles.imp} />
-        <Button title="Add" />
+        <TextInput
+          style={styles.imp}
+          value={txt}
+          onChangeText={(text) => {
+            setTxt(text);
+          }}
+        />
+        <Button title="Add" onPress={addItem} />
       </View>
-      <View style={styles.v2}></View>
+      <View style={styles.v2}>
+        <FlatList
+          data={data}
+          // keyExtractor={}
+          renderItem={({ item }) => {
+            return <TestItem title={item} />;
+          }}
+        />
+      </View>
     </View>
   );
 }
