@@ -12,6 +12,9 @@ import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./src/screens/Home";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import Login from "./src/screens/Login";
+import Favorie from "./src/screens/Favorie";
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -28,11 +31,14 @@ export default function App() {
     });
   };
   const Stack = createStackNavigator();
+  const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Login" component={Login} />
+        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="Favorie" component={Favorie} />
+      </Drawer.Navigator>
     </NavigationContainer>
     // <View style={styles.container}>
     //   <View style={styles.v1}>
